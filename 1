@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров</title>
+</head>
+<body>
+    <div id="products"></div>
+
+    <script>
+      fetch(' https://script.google.com/macros/s/AKfycbxqHUnKZ-5mCTcRsftNaTNeFnJc_Lc5MTR8rKtEOfUTBX6wK9Fgt-CHMPKOa1ieGA9C_w/exec')
+        .then(response => response.json())
+        .then(data => {
+          const productsElement = document.getElementById('products');
+          data.forEach(product => {
+            productsElement.innerHTML += `<div><h3>${product.Name}</h3><p>${product.Description}</p><p>Цена: ${product.Price}</p><img src="${product['Image URL']}" alt="${product.Name}" /></div>`;
+          });
+        })
+        .catch(error => console.error('Ошибка:', error));
+    </script>
+</body>
+</html>
